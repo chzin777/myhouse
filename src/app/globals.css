@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f5f4;
+  --foreground: #1c1917;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -12,15 +13,106 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-shell {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgb(251 191 36 / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgb(214 211 209 / 0.35), transparent),
+    linear-gradient(to bottom, #fafaf9, #f5f5f4 40%, #ececea);
+}
+
+.showcase-scroll {
+  scroll-snap-type: y proximity;
+}
+
+.product-section {
+  border-bottom: 1px solid rgb(231 229 228 / 0.6);
+}
+
+.product-section--hero {
+  background: rgb(250 250 249 / 0.5);
+}
+
+.product-section--footer {
+  border-bottom: none;
+}
+
+/* Scroll reveal — entrada e saída */
+.scroll-reveal {
+  transition:
+    opacity 0.75s var(--ease-out-expo),
+    transform 0.75s var(--ease-out-expo),
+    filter 0.75s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--fade-up.scroll-reveal--hidden {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(4px);
+}
+
+.scroll-reveal--fade-up.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.scroll-reveal--fade-scale.scroll-reveal--hidden {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.scroll-reveal--fade-scale.scroll-reveal--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-reveal--fade-in.scroll-reveal--hidden {
+  opacity: 0;
+}
+
+.scroll-reveal--fade-in.scroll-reveal--visible {
+  opacity: 1;
+}
+
+.scroll-reveal--slide-right.scroll-reveal--hidden {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+
+.scroll-reveal--slide-right.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal--image.scroll-reveal--hidden {
+  opacity: 0;
+  transform: scale(1.05);
+  filter: blur(6px);
+}
+
+.scroll-reveal--image.scroll-reveal--visible {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-scroll {
+    scroll-snap-type: none;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal--image,
+  .dim-chip {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
