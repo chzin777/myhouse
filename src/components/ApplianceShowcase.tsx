@@ -46,6 +46,7 @@ export function ApplianceShowcase() {
         delay={80}
         className="product-section product-section--footer scroll-snap-start scroll-snap-always"
       >
+        {null}
       </ScrollReveal>
     </>
   );
